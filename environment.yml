@@ -1,0 +1,28 @@
+name: aimee
+
+channels:
+  - conda-forge
+  - plotly
+  - defaults
+
+dependencies:
+  - python=3.9
+  - conda-build
+
+  - jupyterlab
+
+  - pandas
+  - numpy
+  - plotly
+
+  - pytest
+  - pytask
+  - pytask-latex
+
+  - flake8
+
+  - pip
+  - pip:
+      - black
+      - blackcellmagic
+      - pre-commit
