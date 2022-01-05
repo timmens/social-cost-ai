@@ -69,6 +69,8 @@
   \clearfield{pages}%
 }
 
+\newcommand{\mycite}[1]{\citeauthor*{#1} (\citeyear{#1}, \cite{#1})}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorem environment etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,5 +141,6 @@
 \urlstyle{tt}
 \hypersetup{
     colorlinks=true,
-    urlcolor=bonnblue
+    urlcolor=bonnblue,
+    citecolor=bonnblue,
 }

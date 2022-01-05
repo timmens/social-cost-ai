@@ -5,7 +5,7 @@
 
 %%% title page
 \title{\textbf{The Social Costs of AI}\\
-    \Large Project Concept
+    \Large Literature Review
 }
 \date{}
 \author{Tim Mensinger%
@@ -25,12 +25,13 @@
 \renewcommand{\abstractname}{Preamble}
 \begin{abstract}
     \noindent This document is intended as a reference guide to the existing literature
-    and available online tools. Connections between our research question and the
+    and available online tools. Connections between your research question and the
     existing literature are highlighted and, if necessary, formalized. The abstract
     below is designed to clarify that we are analyzing the same research question.
 
-    All materials needed to reproduce this project can be found online\footnote{Online
-    repository: \boldurl{https://github.com/timmens/social-cost-ai}}.
+    All materials needed to reproduce this project can be found online in a
+    \emph{private} repository\footnote{Online repository:
+    \boldurl{https://github.com/timmens/social-cost-ai}}.
 \end{abstract}
 
 %%% abstract
@@ -45,7 +46,7 @@
 \end{abstract}
 \thispagestyle{empty}
 
-%%% content
+%%% contents
 \newpage
 
 %%% toc
@@ -60,17 +61,60 @@
 
 There is a small and recent literature tackling questions concerning the social costs of
 AI. In the following sections I will review the papers I found to be most similar to
-what we want to do. A list of further potentially interesting papers is appended to the
-bibliography.
+what you talked about. A list of further potentially interesting papers is appended to
+the bibliography.
 
 
 \section{Literature Review}
 
 \subsection{Quantifying the Carbon Emissions of Machine Learning}
 
-\subsection{Green AI}
+\subsection{\textit{Green AI}}
+\centerline{\mycite{Schwartz_2020}}
+\vspace{1em}
 
-\subsection{Energy and Policy Considerations for Modern Deep Learning Research}
+\paragraph{Summary:} AI field is focusing too much on \emph{model accuracy}, which leads
+to rapidly increasing computational costs, especially since returns of accuracy are
+diminishing with respect to computational costs. This then leads to crowding-out of
+researchers or companies with little funds, and high economic and environmental costs
+($\approx$ computational costs). They term this development \emph{Red AI} and present
+their idea of \emph{Green AI}, which takes into account other metrics that are supposed
+to account for social costs (economic or environmental). As a specific metric to judge
+how good a new model is, they propose FPO (floating point operations), because these are
+hardware and location independent. They acknowladge the work of \mycite{Lacoste_2019}
+and \mycite{Henderson_2020}, but believe that their direct measure of $CO_2$ equivalents
+is inferior, since it looses the connection to the model because much of the variability
+of the measure stems from local energy efficiency and hardware choice.
+
+\subsection{\textit{Energy and Policy Considerations for Modern Deep Learning Research}}
+\centerline{\mycite{Strubell_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} The paper presents a strategy on how to (point) estimate $CO_2$
+equivalents and economic costs of AI model training. They then apply this strategy to a
+variety of NLP models and report the costs of training and the costs of development. The
+costs of development takes into account that there are certain hyperparameters that need
+to be optimized outside the training procedure. They find that a single training process
+of a standard NLP model ($BERT_{base}$) creates approximately as much $CO_2$ equivalents
+as a flight from NY to SF. In their case-study they consider a simpler model for which
+they find that the full development (repeated training of 5000 models instead of 1
+model) increases the costs by a factor of 2000. The factor is not one-to-one with the
+number of repetitions since there was a possibility for jobs to crash early. They
+conclude that in order to compare training costs across models independent of hardware
+one should use FPO, as mentioned in \mycite{Schwartz_2020}.
+
+\paragraph{Formula:} Let $p_c$, $p_g$, $p_r$ denote the average power consumption in
+Watts of the CPU, GPU and DRAM (memory), respectively. Let $g$ denote the number of GPUs
+used for training. Let 1.58 denote the Power Usage Effectiveness (PUE) coefficient. The
+total power consumption at a given instance is then given by
+\begin{align}
+    p_t = \frac{1.58 (p_c + p_r + g p_g)}{1000} \,,
+\end{align}
+where a division by 1000 transforms Watts to KiloWatts. To compute $CO_2$ equivalents
+one can use
+\begin{align}
+    CO_2e = 0.954 p_t \,.
+\end{align}
 
 
 \nocite{*}
