@@ -14,6 +14,7 @@ dependencies:
   - pandas
   - numpy
   - plotly
+  - scikit-learn
 
   - pytest
   - pytask
@@ -23,6 +24,10 @@ dependencies:
 
   - pip
   - pip:
+      - git+https://github.com/Breakend/experiment-impact-tracker
+        # - experiment-impact-tracker
+      - scikeras
+      - tensorflow
       - black
       - blackcellmagic
       - pre-commit
