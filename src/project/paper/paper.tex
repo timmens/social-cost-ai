@@ -30,8 +30,9 @@
     below is designed to clarify that we are analyzing the same research question.
 
     All materials needed to reproduce this project can be found online in a
-    \emph{private} repository\footnote{Online repository:
-    \boldurl{https://github.com/timmens/social-cost-ai}}.
+    \emph{private} repository.\footnote{Online repository:
+    \boldurl{https://github.com/timmens/social-cost-ai}. To access the repository one
+    needs a GitHub account plus an invitation.}
 \end{abstract}
 
 %%% abstract
@@ -57,36 +58,47 @@
 
 %%% introduction
 
-\section{Introduction}
+\section{Literature Review}
 
 There is a small and recent literature tackling questions concerning the social costs of
 AI. In the following sections I will review the papers I found to be most similar to
-what you talked about. A list of further potentially interesting papers is appended to
-the bibliography.
+what you talked about. The ordering is roughly chronological. A list of further
+potentially interesting papers is appended to the bibliography. If you want to read one
+paper only, read \mycite{Henderson_2020}. All of the papers below also discuss
+mitigation strategies which I ignore in my summaries.
 
-
-\section{Literature Review}
 
 \subsection{Quantifying the Carbon Emissions of Machine Learning}
-
-\subsection{\textit{Green AI}}
-\centerline{\mycite{Schwartz_2020}}
+\centerline{\mycite{Lacoste_2019}}
 \vspace{1em}
 
-\paragraph{Summary:} AI field is focusing too much on \emph{model accuracy}, which leads
-to rapidly increasing computational costs, especially since returns of accuracy are
-diminishing with respect to computational costs. This then leads to crowding-out of
-researchers or companies with little funds, and high economic and environmental costs
-($\approx$ computational costs). They term this development \emph{Red AI} and present
-their idea of \emph{Green AI}, which takes into account other metrics that are supposed
-to account for social costs (economic or environmental). As a specific metric to judge
-how good a new model is, they propose FPO (floating point operations), because these are
-hardware and location independent. They acknowladge the work of \mycite{Lacoste_2019}
-and \mycite{Henderson_2020}, but believe that their direct measure of $CO_2$ equivalents
-is inferior, since it looses the connection to the model because much of the variability
-of the measure stems from local energy efficiency and hardware choice.
+\paragraph{Summary:} Explains that the AI community ---research and industry--- is using
+ever-growing computational resources, which can be translated directly to growing energy
+needs. The paper then argues that in order to start a founded discussion on the
+tradeoffs occuring because of the (potentially significant) climate impact of machine
+learning, one needs methodology that approximates the impact of a model (training,
+deploying). They then present their own implementation of such an approximation model.
+The model, or "ML $CO_2$ impact calculator" as they call it, is hosted
+online.\footnote{\boldurl{https://mlco2.github.io/impact/}} The calculator gives a rough
+estimate of the carbon emission produced through energy consumption. They do this using
+information on the hardware type, hours for which the model ran, and carbon efficieny of
+the local power grid. Certain cloud computing infrastructures are also allowed (Google,
+AWS, Azure). There are many underlying assumptions needed in order for this estimate to
+be accurate. Some are listed and critized in \mycite{Henderson_2020}. In my view, this
+calculator can be used to get a first estimate. Because of their underlying assumptions
+the estimate will tend to be positively biased. Hence, if one uses conservative values
+for the energy efficiency, the estimate should provide an upper bound of the true value.
 
-\subsection{\textit{Energy and Policy Considerations for Modern Deep Learning Research}}
+\paragraph{Formula:} The formula is not described in the paper and I did not manage to
+find the time to extract the (mathematical) formula from their code.
+
+\paragraph{Computational implementation:} I have not looked at their computational
+implementation of the calculator in detail. Hence I cannot judge whether the
+implementation is trustworthy.
+
+
+\subsection{Energy and Policy Considerations for Modern Deep Learning Research}
+\label{seq:Strubell_2020}
 \centerline{\mycite{Strubell_2020}}
 \vspace{1em}
 
@@ -115,6 +127,66 @@ one can use
 \begin{align}
     CO_2e = 0.954 p_t \,.
 \end{align}
+
+
+\subsection{Towards the Systematic Reporting of the Energy and Carbon Footprints of
+Machine learning}
+\label{seq:Henderson_2020}
+\centerline{\mycite{Henderson_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} The paper lists similar arguments as above for why a methodology to
+accurately measure the carbon impact of machine learning models is needed; see
+\mycite{Strubell_2020}, \mycite{Schwartz_2020} and \mycite{Lacoste_2019}. The main
+contributions are a (legal) policy viewpoint on the matter as well as a very advanced
+software implementation designed to measure the carbon impact of machine learning models
+in real time. In comparison to the aforementioned papers, their approach is to model the
+energy consumption in as much detail as possible.
+
+The micro-based idea of modelling each component of the system in great detail is only
+favorable if we can trust the data on the micro-level. Otherwise aggregation can result
+in the accumulation of errors. Especially problematic is that we loose the information
+on the direction of the bias, whereas above we knew that we were over-estimating.
+
+\paragraph{Formula:} The formula is similar to the one used in \mycite{Strubell_2020};
+see section \ref{seq:Strubell_2020}. Let $PUE$ denote the power usage effectiveness
+coefficient. Now consider the set of all (computer) processes that are spawned during a
+model run and denote it by $\mathcal{P}$. In comparison to section
+\ref{seq:Strubell_2020} here $e$ denotes energy, while $p$ denotes the percentage each
+resource uses by the attributable process. As an example, given a process $\rho$, the
+CPU uses energy $e_{CPU}$ and $p_{CPU} = p_{CPU}(\rho)$ is the utilization of the CPU
+from process $\rho$. The total energy consumed by process $\rho$ from the CPU is then
+given by $p_{CPU} e_{CPU}$, where we drop the dependency on $\rho$ for the sake of
+clarity. The overall energy consumption is then given by a double sum over the multiple
+components and processes, multiplied with eh $PUE$ coefficient:
+\begin{align}
+    e_{total} = PUE \sum_{\rho \in \mathcal{P}} (p_{dram} e_{dram} + p_{cpu} e_{cpu} +
+    p_{gpu} e_{gpu})
+\end{align}
+
+\paragraph{Computational Implementation:} The computational implementation of their
+calculator seems to be the most advanced. However, it is still in development status and
+buggy. Unfortunately it seems like development stopped 7 months ago (January, 2022). If
+development does not continue, or is picked up by someone else, I cannot recommend using
+this software without applying custom fixes.
+
+
+\subsection{Green AI}
+\centerline{\mycite{Schwartz_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} AI field is focusing too much on \emph{model accuracy}, which leads
+to rapidly increasing computational costs, especially since returns of accuracy are
+diminishing with respect to computational costs. This then leads to crowding-out of
+researchers or companies with little funds, and high economic and environmental costs
+($\approx$ computational costs). They term this development \emph{Red AI} and present
+their idea of \emph{Green AI}, which takes into account other metrics that are supposed
+to account for social costs (economic or environmental). As a specific metric to judge
+how good a new model is, they propose FPO (floating point operations), because these are
+hardware and location independent. They acknowladge the work of \mycite{Lacoste_2019}
+and \mycite{Henderson_2020}, but believe that their direct measure of $CO_2$ equivalents
+is inferior, since it looses the connection to the model because much of the variability
+of the measure stems from local energy efficiency and hardware choice.
 
 
 \nocite{*}
