@@ -3,6 +3,7 @@ name: aimee
 channels:
   - conda-forge
   - plotly
+  - pytorch
   - defaults
 
 dependencies:
@@ -13,7 +14,11 @@ dependencies:
 
   - pandas
   - numpy
+  - scikit-learn
   - plotly
+
+  - pytorch-cpu
+  - torchvision-cpu
 
   - pytest
   - pytask
