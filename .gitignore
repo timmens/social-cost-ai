@@ -22,3 +22,5 @@ bld/
 src/project/__pycache__/
 
 src/project.egg-info/
+
+.ipynb_checkpoints
