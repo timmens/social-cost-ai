@@ -2,6 +2,7 @@
 
 bld/
 
+*.html
 *.aux
 *.bbl
 *.bcf
