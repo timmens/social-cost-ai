@@ -1,0 +1,193 @@
+\usepackage{sourcesanspro}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[document]{ragged2e}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage[tracking=true]{microtype}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{caption}
+\usepackage[scaled=0.85]{beramono}
+\usepackage{tgpagella}
+\usepackage{mathpazo}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{scalerel}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage[percent]{overpic}
+\usepackage{soul}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{lstbayes}
+\usepackage{booktabs}
+\usepackage{bold-extra}
+\usepackage{textpos}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage[flushleft]{threeparttable}
+\usepackage{varwidth}
+
+\usepackage{xpatch}
+\usepackage[plain]{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{graphicx}
+\usepackage{fancybox}
+
+
+\usepackage[skins,theorems]{tcolorbox}
+\tcbset{highlight math style={enhanced,colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber, style=apa, autocite=inline, doi=false, url=false]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+\setcounter{biburlnumpenalty}{85}  % for urls that are too long
+\addbibresource{bibliography.bib}
+\setbeamertemplate{bibliography item}{}% Remove reference icon.
+\setbeamercolor{bibliography entry author}{fg=bonnblue}
+\setbeamercolor{bibliography entry note}{fg=bonnblue}
+\renewcommand*{\bibfont}{\footnotesize}
+\setlength\bibitemsep{\itemsep}
+\AtEveryBibitem{%
+  \clearfield{volume}%
+  \clearfield{number}%
+  \clearfield{pages}%
+}
+\newcommand\mycite[1]{\textcolor{bonnblue}{\citeauthor{#1}} (\textcolor{bonnblue}{\citeyear{#1}})}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Algorithm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\xpatchcmd{\algorithmic}{\itemsep\z@}{\itemsep=1ex plus1pt}{}{}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\indicator[1]{\scaleobj{1.4}{\mathbbm{1}} \! \left\{#1\right\}}
+\newcommand\expectation[1]{\mathbb{E}\left[#1\right]}
+
+\DeclareMathOperator*{\argmax}{argmax}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{bonnblue}{RGB}{4, 83, 156}  % hex: #04539C
+\definecolor{bonngrey}{RGB}{148, 147, 132}  % hex: #8A9384
+\definecolor{bonnyellow}{RGB}{251, 187, 6}  % hex: #FBBB06
+\definecolor{bonngreen}{RGB}{0, 128, 0}  % hex: #FBBB06
+\definecolor{bonnred}{RGB}{153, 0, 0}  % hex: #FBBB06
+\definecolor{red}{RGB}{65, 16, 16}  % hex: #411010
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Auxiliary files
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{title}
+
+
+%% Geometry
+
+\geometry{left=1cm, right=1.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Auxiliary commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \graphicspath{files/} % graphics path
+\newcommand{\labelitem}{\tikz\draw[black,fill=bonnblue] (0,0) circle (.35ex); \,\,}
+
+\newcommand{\blue}[1]{\textcolor{bonnblue}{#1}}
+\newcommand{\yellow}[1]{\textcolor{bonnyellow}{#1}}
+\newcommand{\grey}[1]{\textcolor{bonngrey}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{bonngreen}{#1}}
+\def\ruleline#1{\hbox to \hsize{\hrulefill\quad\lower.3em\hbox{#1}\quad\hrulefill}}
+
+
+\newcommand{\mycheck}{\textcolor{bonngreen}{\faIcon{check}}}
+\newcommand{\mycross}{\textcolor{bonnred}{\faIcon{times}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{itemize subitem}{fg=black}
+\setbeamercolor{itemize subsubitem}{fg=black}
+\setbeamercolor{section head}{fg=cardinal} % currently unused.
+\setbeamercolor{footline}{fg=bonnblue}
+\setbeamercolor{section in toc}{fg=black}
+
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{{\textendash}}
+\setbeamertemplate{itemize subsubitem}[triangle]
+\setbeamertemplate{section in toc}{{\inserttocsectionnumber.}~\inserttocsection}
+
+\setbeamerfont{section in toc}{series=\scshape, size=\Large}
+\setbeamerfont{frametitle}{series=\scshape} % \itshape
+\setbeamercolor{frametitle}{fg=bonnblue}
+
+\setbeamertemplate{frametitle}
+{
+    \vspace*{0.4cm}
+    \insertframetitle \\ \footnotesize \textcolor{bonngrey}{\insertframesubtitle}
+}
+
+\AtBeginSection[]{
+  \setbeamertemplate{footline}[frame number]{}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{footline}{}
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}{\ruleline{\textsc{\insertsectionhead}}}}\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+  \addtobeamertemplate{navigation symbols}{}{%
+      \usebeamerfont{footline}%
+      \usebeamercolor[fg]{author}%
+      \hspace{1em}%
+      \raisebox{2em}[0pt][0pt]{%
+      \normalsize \insertframenumber \kern 0.25em
+      }
+  }
+}
+
+\AtBeginSubsection[]{
+  \setbeamertemplate{footline}[frame number]{}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{footline}{}
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{title}
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}{\textsc{{\normalsize
+      \grey{\insertsectionhead}}\\[1em] \insertsubsectionhead}}}\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+  \addtobeamertemplate{navigation symbols}{}{%
+      \usebeamerfont{footline}%
+      \usebeamercolor[fg]{author}%
+      \hspace{1em}%
+      \raisebox{2em}[0pt][0pt]{%
+      \normalsize \insertframenumber \kern 0.25em
+      }
+  }
+}

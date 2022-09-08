@@ -1,0 +1,284 @@
+\documentclass[serif, mathsansserif, aspectratio=169]{beamer}   % [handout] to remove pause
+
+\setbeamertemplate{title page}[default][left]  % left-align title page
+\beamertemplatenavigationsymbolsempty % remove navigation symbols
+
+\input{preamble}
+
+
+\title{{\LARGE The Social Costs of AI}}
+\subtitle{{\small Ethics, AI \& Economics}}
+\author[Aimee van Wynsberghe \& Tim Mensinger \& Stefan H{\"o}se \& Markus Franke]
+{%
+   \texorpdfstring{
+        \begin{columns}
+            \column{.5\linewidth}
+            \centering
+            {{\large Aimee van Wynsberghe}\\\textcolor{bonngrey}{IWE}}
+            \column{.5\linewidth}
+            \centering
+            {{\large Tim Mensinger}\\\textcolor{bonngrey}{Bonn Graduate School of Economics}}
+        \end{columns}
+        \vspace{0.5cm}
+        \begin{columns}
+            \column{.5\linewidth}
+            \centering
+            {{\large Stefan H{\"ose}}\\\textcolor{bonngrey}{DRZE}}
+            \column{.5\linewidth}
+            \centering
+            {{\large Markus Franke}\\\textcolor{bonngrey}{IWE \& DRZE}}
+        \end{columns}
+   }
+   {John Doe \& Jane Doe}
+}
+\email{}
+\date{23. March 2022}
+
+
+\begin{document}
+
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+% Page numbers
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{author}%
+    \hspace{1em}%
+    \raisebox{2em}[0pt][0pt]{%
+    \normalsize \insertframenumber \kern 0.25em
+    }
+}
+\begin{frame}
+    \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Who am I?}
+\begin{frame}{Who am I?}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] From 2020: PhD Student in Economics, BGSE
+        \item[\labelitem] Until 2020: Economics, Computer Science \& Math
+        \item[\labelitem] Projects: Machine Learning in Economics
+            \begin{itemize}
+                \setlength\itemsep{0.5em}
+                \item Modeling human decision making
+                \item Predicting the effects of programs
+            \end{itemize}
+        \item[\labelitem] Research: Computational Econometrics
+    \end{itemize}
+\end{frame}
+
+
+\section{The Research Question}
+\begin{frame}{AI: An Example}
+    \vspace{-1cm}
+    Let's fix an example for this presentation
+    \vspace{1cm}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] Language modeling (NLP)
+        \item[\labelitem] Autocorrection on phones and computers
+        \item[\labelitem] Amazon Alexa etc.
+        \item[\labelitem] Google Translate etc.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Example contd.}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{overpic}[width=\textwidth]{files/venn}
+ \put (30,68) {Artificial Intelligence}
+ \put (20,40) {Machine Learning}
+ \put (30,22) {\parbox{.5in}{Deep\\Learning}}
+\end{overpic}
+\end{column}
+\begin{column}{0.5\textwidth}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] AI: Teaching computers languages
+        \item[\labelitem] ML: Using specific models to do the above task
+        \item[\labelitem] DL: Using ML models but with \textbf{many} \emph{parameters}
+    \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{What are parameters?}
+\begin{itemize}
+    \setlength\itemsep{1em}
+    \item[\labelitem] Task: Write about your day
+    \item[\labelitem] Catch: You can only use max. \grey{10}, \blue{100}, or \yellow{1000} words
+    \item[\labelitem] Here: Number of words $\equiv$ Number of parameters
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Problem}
+    \begin{table}[]
+    \renewcommand{\arraystretch}{2}
+    \hskip-2.0cm
+        \begin{tabular}{ll}
+            \labelitem \textbf{Many parameters} & $\implies$ large computational costs\\
+            \labelitem Large computational costs & $\implies$ large energy consumption\\
+            \labelitem Large energy consumption & $\implies$ \textbf{large $CO_2$ emissions}
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+
+\begin{frame}{Are the emission really that large?}
+    \pause
+    \textbf{Yes!}\\[1em]Training a large NLP model $\approx$ 125 round-trip
+    flights New York - Beijing\\[0.5em]---\mycite{Strubell_2020}
+\end{frame}
+
+\begin{frame}{}
+    \hspace{-1.5cm}
+    \begin{centering}
+    \begin{overpic}[width=1.1\textwidth]{files/model-parameters-timeline}
+     \put (15, 15) {BERT Large: 340 Million}
+     \put (80, 45) {T-NLG: 17 Billion}
+     \put (20, 35) {$\approx$ 50 times as many parameters}
+    \end{overpic}
+    \end{centering}
+\end{frame}
+
+\begin{frame}{But what causes the emission?}
+    \vspace{-1cm}
+    For state-of-the-art large models:
+    \vspace{1cm}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] \textbf{(Pre-) Training}\\
+            $\approx$ 1 month on 1,000 computers; \mycite{Narayanan_2021}\\
+        \item[\labelitem] \textbf{Fine-Tuning}\\
+            $\approx$ few days on several computers; \mycite{Devlin_2018}\\
+        \item[\labelitem] \textbf{Deployment}\\
+            $\approx$ millisecond
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{How often do these stages happen?}
+    \vspace{-1cm}
+    Let's consider a language model used by Google:
+    \vspace{1cm}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] \textbf{(Pre-) Training \blue{and Model Development}}\\
+            $\approx$ 100 times (\emph{further resources needed})
+        \item[\labelitem] \textbf{Fine-Tuning \blue{and Model Development}}\\
+            $\approx$ 1,000 times (\emph{further resources needed})
+        \item[\labelitem] \textbf{Deployment}\\
+            $\approx$ 5 billion Google searches every day
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{The Problem contd.}
+\begin{centering}
+    \begin{tikzpicture}[fill opacity=0.2, text opacity=1, line width=0.1pt]
+
+        \node (A) at (0, 8) {AI Model};
+        \node (B) at (10, 8) {\textcolor{black}{$CO_2$}};
+
+        \draw[line width=0.3mm, ->] (A) -- (B);
+
+        \pause
+        \node (C) at (5, 6) {Energy};
+        \node (D) at (1, 3) {Hardware \& Software};
+        \node (E) at (5, 3) {\parbox{1in}{{Pre-Training,} {Fine-Tuning,} Deployment}};
+
+        \draw[line width=0.3mm, bonnblue, ->] (A) .. controls (0, 6.5) .. (C);
+        \draw[line width=0.3mm, bonnblue, ->] (D) .. controls (3.5, 4) .. (C);
+        \draw[line width=0.3mm, bonnblue, ->] (E) -- (C);
+
+        \pause
+        \node (F) at (9, 3) {Energy Source};
+        \draw[line width=0.3mm, bonnyellow, ->] (C) .. controls (9, 6.5) .. (B);
+        \draw[line width=0.3mm, bonnyellow, ->] (F) .. controls (11, 5) .. (B);
+         
+    \end{tikzpicture}
+\end{centering}
+\end{frame}
+
+\begin{frame}{Research Questions}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] How do we quantify emissions of AI models?
+        \item[\labelitem] Can we nudge the AI community towards sustainability?
+    \end{itemize}
+\end{frame}
+
+\section{What is BERT and why do we need it?}
+
+\begin{frame}{BERT}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item[\labelitem] Language model developed at Google by \mycite{Devlin_2018}
+        \item[\labelitem] Is used e.g. for Google search queries
+        \item[\labelitem] Main example in \mycite{Strubell_2020} and \mycite{Schwartz_2020}
+        \item[\labelitem] We use it, because
+            \begin{itemize}
+            \setlength\itemsep{0.5em}
+                \item Perfect model size for our resources
+                \item The literature is already familiar with the model
+                \item We can compare our results to the literature
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+\section{Project Status}
+
+\begin{frame}{Project Status}
+    \begin{itemize}
+        \setlength\itemsep{1.5em}
+        \item[\labelitem] Build test computing infrastructure \quad \mycheck
+            \begin{itemize}
+            \setlength\itemsep{0.7em}
+                \item Setup energy measurement architecture \quad \mycheck
+                \item Setup computing environment \quad \mycheck
+                \item Run BERT model \quad \textcolor{bonnyellow}{\faIcon{spinner}}
+            \end{itemize}
+        \item[\labelitem] Build real computing infrastructure \quad \mycross
+            \begin{itemize}
+            \setlength\itemsep{0.7em}
+                \item Get new computing hardware \quad \mycross
+            \end{itemize}
+        \item[\labelitem] Analyze energy data \quad \mycross
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{References}
+    \nocite{*}
+    \printbibliography
+\end{frame}
+
+\setbeamertemplate{footline}[frame number]{}  % contact page has no frame number
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{}
+\begin{frame}{Contact}
+
+    \vspace{-1.5cm}
+    \begin{picture}(320,250)
+        \put(260,100){\includegraphics[scale=0.1]{files/qr-code-website}}
+        \put(0,120){
+            \begin{minipage}[t]{0.8\linewidth}{
+                \begin{itemize}
+                    \item[] \Large \faIcon{globe} \,\, \texttt{tmensinger.com}
+                    \item[] \Large \faIcon{envelope} \, \texttt{tmensinger@uni-bonn.de}
+                    \item[] \Large \faIcon{github} \,\, \texttt{github.com/timmens/social-cost-ai}
+                \end{itemize}
+            }
+            \end{minipage}
+        }
+    \end{picture}
+
+\end{frame}
+
+
+\end{document}
