@@ -27,6 +27,7 @@ dependencies:
   - pytask-latex
 
   - flake8
+  - nb_black
 
   - pip
   - pip:

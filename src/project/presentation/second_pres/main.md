@@ -9,8 +9,8 @@ theme: custom
 <!-- ===================================================================================
 # TITLE PAGE
 ==================================================================================== -->
-<!-- paginate: false -->
 
+<!-- paginate: false -->
 ## The Social Costs of AI: Updates
 
 <br/>
@@ -61,7 +61,7 @@ theme: custom
 - No proper software for model training
     - Find software to train BERT base
     - Realize our existing hardware is too old
-    
+
 - Will come back to this task <span style="color: orange;">&#9881;</span>
 
 ---
@@ -69,11 +69,11 @@ theme: custom
 
 - Buy professional hardware system
     - Delivered: 30. March 2022
-    
+
 - Realize there are problems with the system: 4. April 2022
     - Try to fix them, does not work
     - Contact customer support
-    
+
 - Return device: 1. June 2022
 
 ---
@@ -95,10 +95,10 @@ theme: custom
 
 - Existing hardware was too old
     - Specifically: GPU was too old
-    
+
 - Replace this component: 17. June 2022
     - Works perfectly!
-    
+
 - Build computing infrastructure <span style="color: green;">&#10004;</span>
 
 - Run BERT model <span style="color: green;">&#10004;</span>
@@ -110,15 +110,14 @@ theme: custom
     - $\approx$ 1 billion words and symbols
     - Training time: 1 day
 - BookCorpus
-    - $\approx$ 11,000 books (a human would need to read 10 books per month for 100 years)
+    - $\approx$ 11,000 books (read 10 books per month for 100 years)
     - $\approx$ 10 billion words and symbols
-    - Training time: 10 days
+    - Training time: 6 days
 
 ---
 <!-- paginate: false -->
 <!-- _class: lead -->
 # Results
-
 
 ---
 <!-- paginate: false -->
@@ -136,7 +135,10 @@ Insert results figures here
 ---
 <!-- paginate: false -->
 <!-- _class: lead -->
-# Lessons Learned
+# What Next?
+
+---
+### Lessons Learned
 
 - Always have a back-up plan
 
