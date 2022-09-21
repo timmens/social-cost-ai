@@ -129,13 +129,18 @@ theme: custom
 ---
 ### Energy consumption
 
-
-Insert results figures here
+- Strubell et al. (2019)
+    - 1,500 kwh
+    - 2,500 km (driven by average car)
+    
+- AI Lab
+    - 40 kwh
+    - 70 km (driven by average car)
 
 ---
 <!-- paginate: false -->
 <!-- _class: lead -->
-# What Next?
+# Whats Next?
 
 ---
 ### Lessons Learned
