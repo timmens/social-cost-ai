@@ -67,25 +67,28 @@ theme: custom
 ---
 ### Build computing infrastructure
 
-- Buy professional hardware system
+- Buy professional hardware system (Jetson AGX Xavier)
     - Delivered: 30. March 2022
+    - Unsuccessful tests the very same day
 
-- Realize there are problems with the system: 4. April 2022
-    - Try to fix them, does not work
-    - Contact customer support
+- Realize there are problems with the system: 31. March 2022
+    - Try to reflash the device until 9 p.m. of March, 31st
+        - "Waiting" more than six hours (release payment)
+    - Contact customer support by ticket system: 6. April 2022
 
-- Return device: 1. June 2022
+- Return device: 3. June 2022
 
 ---
 ### Build computing infrastructure (2)
 
-- Return device: 1. June 2022
+- Return device: 3. June 2022
 
 - Get repaired device back: 4. July 2022
-    - Realize its still broken...
+    - Still broken: mouse and keyboard didn't work
     - Contact customer support again
 
 - Return device: 25. August 2022
+    * After giving a deadline: 31. August 2022
 
 - Repaired device arrives: 2. September 2022
     - It kinda works! &#x1F389;
@@ -95,9 +98,10 @@ theme: custom
 
 - Existing hardware was too old
     - Specifically: GPU was too old
+    - Decision to buy and use a RTX 3060
 
-- Replace this component: 17. June 2022
-    - Works perfectly!
+- Replace this component: 13. June 2022
+    - Works perfectly! (since 17. June 2022)
 
 - Build computing infrastructure <span style="color: green;">&#10004;</span>
 
@@ -130,11 +134,13 @@ theme: custom
 ### Energy consumption
 
 - Strubell et al. (2019)
-    - 1,500 kwh
+    - 1,500 kWh
     - 2,500 km (driven by average car)
     
 - AI Lab
-    - 40 kwh
+    - 40 kWh
+        - Much less energy consumption
+        * Possibly because RTX 3060 was released at 2020-09-17
     - 70 km (driven by average car)
 
 ---
@@ -145,9 +151,12 @@ theme: custom
 ---
 ### Lessons Learned
 
-- Always have a back-up plan
+- Always have a back-up plan (we did!)
 
 - Be less patient in B2B contexts
+    * Set deadlines after experiencing the _first_ problem
+    * _Be loud_ until your problem has been solved
+    * The bigger the company the faster and better their reaction
 
 ---
 <!-- paginate: false -->
