@@ -19,6 +19,7 @@ bld/
 *.sty
 *.synctex(busy)
 *.bak
+*.dvi
 
 src/project/__pycache__/
 

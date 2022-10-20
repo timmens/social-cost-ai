@@ -1,0 +1,130 @@
+
+\section{Literature Review}
+
+There is a small, recent literature that addresses questions about the social costs of
+AI. In the following sections, I will review the works that I think are most similar to
+what you talked about. The order is roughly chronological. If you want to read only one
+paper, read \mycite{Henderson_2020}. All of the following papers also discuss mitigation
+strategies, which I ignore in my summaries.
+
+
+\subsection{Quantifying the Carbon Emissions of Machine Learning}
+\centerline{\mycite{Lacoste_2019}}
+\vspace{1em}
+
+\paragraph{Summary:} Explains that the AI community ---research and industry--- is
+consuming more and more computational resources, which translates directly into
+increasing energy demand. The paper then argues that an informed discussion of the
+tradeoffs that arise due to the (potentially significant) climate impact of machine
+learning requires a methodology that approximates the impact of a model (training,
+deployment). They then present their own implementation of such an approximation model.
+The model, or "ML $CO_2$ impact calculator" as they call it, is hosted
+online.\footnote{\url{https://mlco2.github.io/impact/}} The calculator gives a rough
+estimate of the carbon emissions caused by energy use.  It does this using information
+about the type of hardware, the hours the model was running, and the CO2 efficiency of
+the local power grid. Certain cloud computing infrastructures are also allowed (Google,
+AWS, Azure). For this estimate to be accurate, many assumptions must be made. Some of
+these are discussed in \mycite{Henderson_2020}. In my view, this calculator can be
+used to obtain an initial estimate. Because of the underlying assumptions, the estimate
+will tend to be positively biased. Thus, if one uses conservative values for energy
+efficiency, the estimate should represent an upper bound of the true value.
+
+\paragraph{Formula:} The formula is not described in the paper, and I have not managed
+to find the time to extract the (mathematical) formula from their code.
+
+\paragraph{Computational implementation:} I have not looked at the computational
+implementation of the calculator in detail. Therefore, I cannot judge whether the
+implementation is trustworthy.
+
+
+\subsection{Energy and Policy Considerations for Modern Deep Learning Research}
+\label{seq:Strubell_2020}
+\centerline{\mycite{Strubell_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} The paper presents a strategy for (pointwise) estimating the
+$CO_2$ equivalents and economic costs of training AI models. They then apply this
+strategy to a set of NLP models and report the costs of training and the development
+costs. The development costs take into account that there are certain hyperparameters
+that need to be optimized outside of the training process. They find that a single
+training process of a standard NLP model ($BERT_{base}$) generates about as much $CO_2$
+equivalents as a flight from NY to SF. In their case study, they consider a simpler
+model, for which they find that full development (repeated training of 5000 models
+instead of 1 model) increases the cost by a factor of 2000. The factor is not one-to-one
+with the number of repetitions, since there was a possibility that jobs were canceled
+early. They conclude that to compare training costs for different models, independent of
+hardware and local power grid specifications, one should use FPO, as mentioned in
+\mycite{Schwartz_2020}.
+
+\paragraph{Formula:} Let $p_c$, $p_g$, $p_r$ denote the average power consumption in
+Watts of the CPU, GPU and DRAM (memory), respectively. Let $g$ denote the number of GPUs
+used for training. Let 1.58 denote the PUE (Power Usage Effectiveness) coefficient. The
+total power consumption at a given instance is then given by
+\begin{align}
+    p_t = \frac{1.58 (p_c + p_r + g p_g)}{1000} \,,
+\end{align}
+where a dividing by 1000 converts Watts to KiloWatts. To calculate the $CO_2$
+equivalents, one can use
+\begin{align}
+    CO_2e = 0.954 p_t \,.
+\end{align}
+
+
+\subsection{Towards the Systematic Reporting of the Energy and Carbon Footprints of
+Machine learning}
+\label{seq:Henderson_2020}
+\centerline{\mycite{Henderson_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} The paper makes similar arguments as above as to why methods to
+accurately measure the carbon impact of machine learning models are needed; see
+\mycite{Strubell_2020}, \mycite{Schwartz_2020}, and \mycite{Lacoste_2019}. The main
+contributions are a (legal) policy viewpoint on this topics and a very advanced software
+implementation to measure the carbon impact of machine learning models in real time.
+Compared to the aforementioned work, their approach is to model energy consumption in as
+much detail as possible.
+
+The micro-based idea of modeling each component of the system in minute detail is only
+beneficial if we can trust the micro-level data. Otherwise, aggregation can lead to an
+accumulation of errors. Particularly problematic is that we lose the information about
+the direction of the bias, while we knew above that we overestimated the true value.
+
+\paragraph{Formula:} The formula is similar to that used in \mycite{Strubell_2020}; see
+Section \ref{seq:Strubell_2020}. $PUE$ stands for the power usage effectiveness
+coefficient. Consider the set of all (computer) processes spawned during a model run and
+denote it by $\mathcal{P}$. Compared to Section \ref{seq:Strubell_2020}, here $e$
+denotes energy, while $p$ denotes the percentage of each resource used by the
+attributable process. For example, for a process $\rho$, the CPU consumes energy
+$e_{CPU}$, and $p_{CPU} = p_{CPU}(\rho)$ is the utilization of the CPU by process
+$\rho$. The total energy consumption of process $\rho$ by the CPU is then given by
+$p_{CPU} e_{CPU}$, where we omit the dependence on $\rho$ for clarity. The total energy
+consumption is then defined by a double sum over the different components and processes,
+multiplied with the $PUE$ coefficient:
+\begin{align}
+    e_{total} = PUE \sum_{\rho \in \mathcal{P}} (p_{dram} e_{dram} + p_{cpu} e_{cpu} +
+    p_{gpu} e_{gpu})
+\end{align}
+
+\paragraph{Computational Implementation:} The computational implementation of their
+calculator seems to be the most advanced. However, it is still in development stage and
+buggy. Unfortunately, development appears to have ceased in July 2021. Unless
+development continues or is taken over by someone else, I cannot recommend using this
+software without making your own corrections.
+
+
+\subsection{Green AI}
+\centerline{\mycite{Schwartz_2020}}
+\vspace{1em}
+
+\paragraph{Summary:} The paper argues that the field of AI is overly focused on
+\emph{model accuracy}, leading to rapidly increasing computational costs, especially as
+the returns to accuracy are diminish relative to computational costs. This then leads to
+crowding out of researchers or companies with low resources as well as high economic and
+environmental costs ($\approx$ computational costs). They refer to this trend as
+\emph{Red AI} and introduce their idea of \emph{Green AI}, which considers other metrics
+that should take into account social costs (economic or environmental). The propose FPO
+(Floating Point Operations) as a specific metric to assess the quality of a new model,
+since it is hardware and locations independent. They acknowledge the work of
+\mycite{Lacoste_2019} and \mycite{Henderson_2020}, but believe that their direct measure
+of $CO_2$ equivalents is inferior because it loses the link to the model, as much of the
+variability in the measure is due to local energy efficiency and hardware choice.
