@@ -35,6 +35,7 @@
 \definecolor{bonnblue}{RGB}{4, 83, 156}  % hex: #04539C
 \definecolor{bonngrey}{RGB}{148, 147, 132}  % hex: #8A9384
 \definecolor{bonnyellow}{RGB}{251, 187, 6}  % hex: #FBBB06
+\definecolor{bonnred}{RGB}{178, 34, 34}  % hex: #B22222
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Auxiliary commands
@@ -43,7 +44,7 @@
 \newcommand{\blue}[1]{\textcolor{bonnblue}{#1}}
 \newcommand{\yellow}[1]{\textcolor{bonnyellow}{#1}}
 \newcommand{\grey}[1]{\textcolor{bonngrey}{#1}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\red}[1]{\textcolor{bonnred}{#1}}
 
 %% Hyperlink stuff
 \renewcommand\thefootnote{\blue{\arabic{footnote}}}
@@ -61,7 +62,7 @@
 % Title page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{\textbf{The Social Costs of AI}\\
-    \Large Working Paper
+    \Large \red{Working Paper}
 }
 \date{Version: \today}
 \author[1]{Aimee van Wynsberghe}
