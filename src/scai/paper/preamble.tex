@@ -58,6 +58,15 @@
 }
 
 
+%% Footnote without marker
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,7 +76,6 @@
 \date{Version: \today}
 \author[1]{Aimee van Wynsberghe}
 \author[2]{Tim Mensinger}
-\author[3]{Stefan H{\"o}se}
+
 \affil[1]{Institute of Science and Ethics, University of Bonn}
 \affil[2]{Institute of Finance and Statistics, University of Bonn}
-\affil[3]{DRZE, University of Bonn}
