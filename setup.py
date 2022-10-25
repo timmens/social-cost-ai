@@ -3,7 +3,7 @@ from setuptools import setup
 
 
 setup(
-    name="project",
+    name="scai",
     version="0.0.1",
     packages=find_packages(where="src"),
     package_dir={"": "src"},

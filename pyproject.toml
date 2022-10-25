@@ -1,0 +1,2 @@
+[tool.pytask.ini_options]
+infer_latex_dependencies = "true"

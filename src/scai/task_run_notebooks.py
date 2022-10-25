@@ -1,8 +1,8 @@
 import subprocess
 
 import pytask
-from project.config import BLD
-from project.config import SRC
+from scai.config import BLD
+from scai.config import SRC
 
 
 DEPENDENCIES = list(SRC.joinpath("notebooks").glob("*.ipynb"))

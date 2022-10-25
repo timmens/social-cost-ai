@@ -1,4 +1,4 @@
-name: aimee
+name: scai
 
 channels:
   - conda-forge
@@ -7,24 +7,22 @@ channels:
   - defaults
 
 dependencies:
-  - python=3.9
+  - python >= 3.9
   - conda-build
 
   - jupyterlab
+  - ipython
+  - ipdb
+  - pdbpp
+  - pytest
+
+  - pytask
+  - pytask-latex
 
   - pandas
   - numpy
   - scikit-learn
   - plotly
-
-  - transformers
-  - sentencepiece
-  - pytorch-cpu
-  - torchvision-cpu
-
-  - pytest
-  - pytask
-  - pytask-latex
 
   - flake8
   - nb_black
@@ -34,3 +32,4 @@ dependencies:
       - black
       - blackcellmagic
       - pre-commit
+      - -e .

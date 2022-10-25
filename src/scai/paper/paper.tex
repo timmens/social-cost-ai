@@ -5,9 +5,14 @@
 
 \begin{document}
 
-\input{sections/titlepage}
+\maketitle
+\input{sections/abstract}
+\thispagestyle{empty}
 \newpage
-\input{sections/contents}
+{
+    \hypersetup{linkcolor=bonnblue}
+    \tableofcontents
+}
 \newpage
 \input{sections/literature_review}
 \input{sections/comparison}
