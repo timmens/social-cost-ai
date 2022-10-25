@@ -7,27 +7,16 @@ from scai.config import SRC
 
 
 DEPENDENCIES = [
-    SRC.joinpath("paper", doc) for doc in ("paper.tex", "preamble.tex", "bibliography.bib")
+    SRC.joinpath("paper", doc)
+    for doc in ("paper.tex", "preamble.tex", "bibliography.bib")
 ]
 DEPENDENCIES += list(SRC.joinpath("paper", "sections").glob("*.tex"))
 
-
-# @pytask.mark.latex(
-#     [
-#         "--pdf",
-#         "--interaction=nonstopmode",
-#         "--synctex=1",
-#         "--cd",
-#         "--quiet",
-#         "--shell-escape",
-#     ]
-# )
 
 @pytask.mark.depends_on(DEPENDENCIES)
 @pytask.mark.latex(
     script=SRC.joinpath("paper", "paper.tex"),
     document=BLD.joinpath("paper", "paper.pdf"),
-#     compilation_steps=cs.latexmk(options="--some-options"),
 )
 def task_compile_documents():
     pass

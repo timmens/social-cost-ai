@@ -10,7 +10,7 @@ OUTPUTDIR = str(BLD.joinpath("notebooks"))
 
 
 @pytask.mark.depends_on(DEPENDENCIES)
-def task_run_notebook(depends_on, produces):
+def task_run_notebook(depends_on, produces):  # noqa: U100
     subprocess.call(
         [
             "jupyter",

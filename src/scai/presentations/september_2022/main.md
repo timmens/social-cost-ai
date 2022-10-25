@@ -136,7 +136,7 @@ theme: custom
 - Strubell et al. (2019)
     - 1,500 kWh
     - 2,500 km (driven by average car)
-    
+
 - AI Lab
     - 40 kWh
         - Much less energy consumption
@@ -146,7 +146,7 @@ theme: custom
 ---
 <!-- paginate: false -->
 <!-- _class: lead -->
-# Whats Next?
+# What's Next?
 
 ---
 ### Lessons Learned
