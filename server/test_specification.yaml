@@ -1,0 +1,9 @@
+
+model_type: distilbert
+tokenizer_name: distilbert-base-uncased
+list_of_datasets:
+  - [ai2_arc, ARC-Easy]
+output_dir: tmp_test
+max_steps: 10
+save_total_limit: 5
+logger_name: test
