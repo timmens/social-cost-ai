@@ -32,3 +32,4 @@ dependencies:
     - pip:
       - evaluate
       - git+https://github.com/huggingface/transformers
+      - ..

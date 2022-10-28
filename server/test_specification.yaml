@@ -1,4 +1,3 @@
-
 model_type: distilbert
 tokenizer_name: distilbert-base-uncased
 list_of_datasets:
