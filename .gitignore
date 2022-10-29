@@ -1,8 +1,8 @@
 .pytask.sqlite3
 
 bld/
-src/**/*.pdf
 
+*.pdf
 *.html
 *.aux
 *.bbl
@@ -21,8 +21,6 @@ src/**/*.pdf
 *.synctex(busy)
 *.bak
 *.dvi
-
-src/project.egg-info/
 
 .ipynb_checkpoints
 

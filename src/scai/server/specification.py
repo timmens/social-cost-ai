@@ -6,8 +6,6 @@ from typing import Optional
 from typing import Tuple
 from typing import Union
 
-from scai.server.classes import DataTrainingArguments
-from scai.server.classes import ModelArguments
 from transformers import MODEL_FOR_MASKED_LM_MAPPING
 from transformers import TrainingArguments
 
@@ -15,12 +13,36 @@ from transformers import TrainingArguments
 MODEL_CONFIG_CLASSES = list(MODEL_FOR_MASKED_LM_MAPPING.keys())
 MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
 
+SPECIFICATIONS = {
+    "test": {
+        "model_type": "distilbert",
+        "tokenizer_name": "distilbert-base-uncased",
+        "list_of_datasets": [("ai2_arc", "ARC-Easy")],
+        "output_dir": "tmp_test",
+        "max_steps": 10,
+        "save_total_limit": 5,
+        "logger_name": "test",
+    },
+    "bert-base": {
+        "model_type": "bert-base-uncased",
+        "tokenizer_name": "bert-base-uncased",
+        "list_of_datasets": [
+            ("wikitext", "wikitext-2-raw-v1"),
+            ("bookcorpus", "plain_text"),
+        ],
+        "output_dir": "tmp_bert_base",
+        "max_steps": 100_000,
+        "save_total_limit": 5,
+        "logger_name": "bert-base-logger",
+    },
+}
+
 
 def get_specification(
     list_of_datasets: List[Tuple[str]],
     model_type: str,
     tokenizer_name: str = None,
-    output_dir: Union[str, Path] = "/tmp/",
+    output_dir: Union[str, Path] = "tmp",
     save_total_limit: int = 5,
     max_steps: int = 10,
 ):

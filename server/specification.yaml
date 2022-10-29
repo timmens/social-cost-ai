@@ -1,9 +1,0 @@
-model_type: bert-base-uncased
-tokenizer_name: bert-base-uncased
-list_of_datasets:
-  - [wikitext, wikitext-2-raw-v1]
-  - [bookcorpus, plain_text]
-output_dir: tmp
-max_steps: 100_000
-save_total_limit: 2
-logger_name: bert-logger
