@@ -15,8 +15,8 @@ import transformers
 from scai.server.data_management import get_data
 from scai.server.data_management import preprocess_data
 from scai.server.evaluate import do_evaluation
-from scai.server.logging import get_last_checkpoint
-from scai.server.logging import get_logger
+from scai.server.log import get_last_checkpoint
+from scai.server.log import get_logger
 from scai.server.model import get_model
 from scai.server.model import get_model_card_kwargs
 from scai.server.model import get_model_config
