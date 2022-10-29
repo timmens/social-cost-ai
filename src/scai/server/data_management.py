@@ -32,7 +32,7 @@ def get_data(list_of_data_args, model_args):
         _data_sets.append(_data)
 
     data = DatasetDict()
-    for _type in ["train", "test", "validation"]:
+    for _type in ["train", "validation"]:  # do not require testing set
         data[_type] = concatenate_datasets([_data[_type] for _data in _data_sets])
 
     return data
