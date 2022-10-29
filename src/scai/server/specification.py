@@ -24,7 +24,7 @@ SPECIFICATIONS = {
         "logger_name": "test",
     },
     "bert-base": {
-        "model_type": "bert-base-uncased",
+        "model_type": "bert",
         "tokenizer_name": "bert-base-uncased",
         "list_of_datasets": [
             ("wikitext", "wikitext-2-raw-v1"),
