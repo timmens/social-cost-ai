@@ -1,6 +1,7 @@
 .pytask.sqlite3
 
 bld/
+data/
 
 *.pdf
 *.html
