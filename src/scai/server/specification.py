@@ -31,7 +31,7 @@ SPECIFICATIONS = {
             ("bookcorpus", "plain_text"),
         ],
         "output_dir": "tmp_bert_base",
-        "max_steps": 100_000,
+        "max_steps": 1_000_000,
         "save_total_limit": 5,
         "logger_name": "bert-base-logger",
     },
