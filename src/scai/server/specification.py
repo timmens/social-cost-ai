@@ -35,6 +35,18 @@ SPECIFICATIONS = {
         "save_total_limit": 5,
         "logger_name": "bert-base-logger",
     },
+    "bert-large": {
+        "model_type": "bert",
+        "tokenizer_name": "bert-large-uncased",
+        "list_of_datasets": [
+            ("wikitext", "wikitext-2-raw-v1"),
+            ("bookcorpus", "plain_text"),
+        ],
+        "output_dir": "tmp_bert_large",
+        "max_steps": 1_000_000,
+        "save_total_limit": 5,
+        "logger_name": "bert-large-logger",
+    },
 }
 
 
