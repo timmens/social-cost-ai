@@ -22,6 +22,7 @@ data/
 *.synctex(busy)
 *.bak
 *.dvi
+*.DS_Store
 
 .ipynb_checkpoints
 
